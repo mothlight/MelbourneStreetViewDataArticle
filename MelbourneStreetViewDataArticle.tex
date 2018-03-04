@@ -67,7 +67,7 @@
 %% for the whole article with \linenumbers.
 %% \usepackage{lineno}
 
-\journal{Urban Climate}
+\journal{TBD}
 
  
 
@@ -104,14 +104,14 @@
 
 
 %% use optional labels to link authors explicitly to addresses:
-\author[melb]{Kerry A. Nice}
-
-\corref{cor1}
+\author[melb]{Kerry A. Nice\corref{cor1}\corref{cor2}}
 %\ead{ambroadb@asu.edu}
 \ead{kerry.nice@unimelb.edu.au}
-\cortext[cor1]{Principal corresponding author}
-\author[melb]{Jasper S. Wijnands}
 
+\author[melb]{Jasper S. Wijnands\corref{cor2}}
+
+\cortext[cor1]{Principal corresponding author}
+\cortext[cor2]{First two authors contributed equally}
 \address[melb]{Transport, Health, and Urban Design Hub, Faculty of Architecture, Building, and Planning, University of Melbourne, Victoria 3010, Australia}
 
 \begin{abstract}
@@ -131,19 +131,14 @@ keyword1
 
 
 \section{Introduction}\label{sec:introduction}
-The Transport, Health, and Urban Design Hub has undertaken a number of studies (CITE TO THEM) requiring large amounts of Google Street View imagery \citep{GoogleMaps2017b}. These images were used in training neural networks to classify urban typologies and a number of other uses. A large and well curated dataset such as this has a wide variety of other potential uses by sharing this dataset, those uses can be supported.
+The Transport, Health, and Urban Design Hub has undertaken a number of studies (CITE TO THEM) requiring large amounts of Google Street View imagery \citep{GoogleMaps2017b}. These images were used in training neural networks to classify urban typologies and a number of other uses. The purpose of this dataset is two-fold, namely (i) providing transparency and replicability of results in the papers mentioned above and (ii) facilitating innovative academic research using Google's street view imagery. The dataset is well curated and can be used for academic, non-commercial research, in accordance with Google's terms of service.
 
-The dataset itself consists of Google Street View imagery for 1.7 million locations in the Greater Melbourne area in Australia. Four images for each location was sampled, with a field of view of 90 degrees and with headings of 0, 90, 180, and 270 degrees.
+The dataset itself consists of Google Street View imagery for 1.7 million locations in the Greater Melbourne area in Australia. Four images for each location was sampled, with a field of view of 90 degrees and with headings of 0, 90, 180, and 270 degrees. Collected in March 2018.
 
+\section{How the data was collected}\label{sec:create}
+In order to efficiently sample data for the Greater Melbourne area, as well as avoid imagery that is not available or that was of indoor locations, the imagery locations were determined by using the road network of Melbourne. Using the AURIN portal \citep{Aurin2018}, the Greater Melbourne area (gccsa\_2016/GMEL) was selected and the PSMA Street Network \citep{PSMA2018} was imported into the project. The PSMA Street Network provides national coverage of the street network at all levels. Roads data covers everything from major highways to walking paths. Using QGIS \citep{QGIS2009}, nodes of the vector lines were extracted from the corresponding shapefile to a new layer. For illustration purposes, an excerpt of this node point layer is provided below:
 
-\section{How the data was created}\label{sec:create}
-In order to efficiently sample data for the Greater Melbourne area, as well as avoid imagery that is not available or that was of indoor locations, the imagery locations were determined by using the road network of Melbourne.
-
-The point locations along the Melbourne road network were determined through a number of steps. Using the AURIN portal \citep{Aurin2018}, the Greater Melbourne area (gccsa\_2016/GMEL) was selected and the PSMA Street Network \citep{PSMA2018} was imported into the project. The PSMA Street Network provides national coverage of street network at all levels. Roads data covers everything from major highways to walking paths. This data was exported as a shapefile.
-
-This shapefile was opened in QGIS \citep{QGIS2009} and the nodes of the vector lines were extracted to a new layer. This node point layer was saved as a csv file.
-
-The data in this file looks like:
+[replace headers with something more descriptive]
 \begin{verbatim}
 X, Y, dirn_cd, jrsdctn_id, st_lne_pid, authrty_cd, full_name
 144.627419835000012,-37.745644954,2,5639424,VIC5639424,0,GREIGS ROAD
@@ -156,18 +151,18 @@ Using the latitude and longitude locations in this file, Python and the Google S
 The parameters used to download the images are illustrated by the following code excerpt, in which `KEY' is the Google Street View API Key and `number' is the st\_lne\_pid from the PSMA data file (i.e. VIC5639424):
 
 \begin{verbatim}
-PIXELS_LOGO_AREA = 22
+BUFFER_AREA = 22
 IMG_SIZE = 256
 url='https://maps.googleapis.com/maps/api/streetview?&size=' + str(IMG_SIZE) +
-    'x' + str(IMG_SIZE + 2 * PIXELS_LOGO_AREA) + '&location=' + str(Lat) +
+    'x' + str(IMG_SIZE + 2 * BUFFER_AREA) + '&location=' + str(Lat) +
     ',' + str(Lon) + '&fov=90&heading=' + str(heading) +'&pitch=0&key=' + KEY         
 filename = os.path.join(output_dir, '{}_{}_{}_{}.jpg'.format(number, lat, lon,heading))
-#image is cropped to remove Google logo
+#image is cropped to remove Google logo for research purposes
 w, h = im.size
-im.crop((0, PIXELS_LOGO_AREA, w, h-PIXELS_LOGO_AREA)).save(filename)
+im.crop((0, BUFFER_AREA, w, h-BUFFER_AREA)).save(filename)
 \end{verbatim}
-	
-Images were downloaded at a resolution of 256x300. As the images were intended to train neural networks, the bottom portions of the images were cropped to remove any extra visual information (the Google logo) that would impact the neural network training, resulting in a final 256x256 image. 
+
+The image dataset described here has been prepared for usage in combination with frequently used neural network architectures (e.g., Inception v2, ...., etc.). As such, the resolution of each image is 256x256 pixels (while the initial download of the image was at a 256x300 resolution). For deep learning purposes, the bottom portions of the images were cropped from 256x300 to 256x256 to remove any superfluous visual information (namely, the Google logo) that would impact neural network training. Hence, when using images from this dataset in academic publications, care should be taken to provide proper attribution to Google.
 
 The four images for each location are saved in the directory structure:
 
