@@ -126,13 +126,16 @@ keyword1
 
 \end{frontmatter}
 
+% not available 2339092
+% total found 4473991
+% total locations 1118534
 
 
 
 \section{Introduction}\label{sec:introduction}
 The Transport, Health, and Urban Design Hub has undertaken a number of studies (CITE TO THEM) requiring large amounts of Google Street View imagery \citep{GoogleMaps2017b}. These images were used in training neural networks to classify urban typologies and a number of other uses. The purpose of this dataset is two-fold, namely (i) providing transparency and replicability of results in the papers mentioned above and (ii) facilitating innovative academic research using Google's street view imagery. The dataset is well curated and can be used for academic, non-commercial research, in accordance with Google's terms of service.
 
-The dataset itself consists of Google Street View imagery for 1.7 million locations in the Greater Melbourne area in Australia. Four images for each location was sampled, with a field of view of 90 degrees and with headings of 0, 90, 180, and 270 degrees. Collected in March 2018.
+The dataset itself consists of Google Street View imagery for 1.1 million locations in the Greater Melbourne area in Australia. Four images for each location was sampled, with a field of view of 90 degrees and with headings of 0, 90, 180, and 270 degrees. Collected in March 2018.
 
 \section{How the data was collected}\label{sec:create}
 In order to efficiently sample data for the Greater Melbourne area, as well as avoid imagery that is not available or that was of indoor locations, the imagery locations were determined by using the road network of Melbourne. Using the AURIN portal \citep{Aurin2018}, the Greater Melbourne area (gccsa\_2016/GMEL) was selected and the PSMA Street Network \citep{PSMA2018} was imported into the project. The PSMA Street Network provides national coverage of the street network at all levels. Roads data covers everything from major highways to walking paths. Using QGIS \citep{QGIS2009}, nodes of the vector lines were extracted from the corresponding shapefile to a new layer. For illustration purposes, an excerpt of this node point layer is provided below:
@@ -145,7 +148,7 @@ X, Y, dirn_cd, jrsdctn_id, st_lne_pid, authrty_cd, full_name
 145.222131428000012,-38.055551055,2,15787712,VIC15787712,0,FOX DRIVE
 \end{verbatim}
 
-Using the latitude and longitude locations in this file, Python and the Google Street View API \citep{GoogleMaps2017b} were used to download imagery for the 1.7 million locations. Four images were downloaded for each location, using headings of 0, 90, 180, and 270 degrees. Images for locations where imagery was not available was removed. This brings the total number of available locations to XXXX.
+Using the latitude and longitude locations in this file, Python and the Google Street View API \citep{GoogleMaps2017b} were used to download imagery for the 1.7 million locations. Four images were downloaded for each location, using headings of 0, 90, 180, and 270 degrees. Images for locations where imagery was not available was removed. This brings the total number of available locations to 1.1 million.
 
 The parameters used to download the images are illustrated by the following code excerpt, in which `KEY' is the Google Street View API Key and `number' is the st\_lne\_pid from the PSMA data file (i.e. VIC5639424):
 
@@ -178,7 +181,7 @@ The four images for each location are saved in the directory structure:
 
 \section{Description of the data}\label{sec:description}
 
-The dataset contains XX million images (JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000) of Google Street View. Images for each of the four headings (0, 90, 180, and 270 degrees) are saved in the four subdirectories described above. 
+The dataset contains 4,473,991 images (JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000) of Google Street View from 1,118,534 locations. Images for each of the four headings (0, 90, 180, and 270 degrees) are saved in the four subdirectories described above. 
 
 Each of the files follow the naming convention LocationNumber\_Latitude\_Longitude\_Heading.jpg (i.e. VIC9984261\_-37.683250063\_145.05143251199999\_90.jpg).
 
