@@ -115,12 +115,14 @@
 
 \begin{abstract}
 
+The data presented in this article is related to the research article entitled "XXXXXX" (Wijnands et al. 2018). The data consists of Google Street View imagery (4,473,991 images, JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000) from 1,118,534 locations in the greater Melbourne, Australia metropolitan area. Images for each of the four headings (0, 90, 180, and 270 degrees) were collected at each location. Locations were determined using the nodes of the vector lines in the PSMA Street Network dataset \citep{PSMA2018}. The dataset is available on Zenodo at https://doi.org/XXXXXXX. 
 
-This is the abstract.
+
+
 \end{abstract}
 
 \begin{keyword}
-keyword1
+Street view imagery, neural network training data
 
 \end{keyword}
 
@@ -132,17 +134,41 @@ keyword1
 
 
 
-\section{Introduction}\label{sec:introduction}
+\begin{table}[!htbp]
+\caption{\bf Specifications Table \label{tab:spectable}}     
+\begin{tabular}{ |l | l| }
+ \hline    
+Subject area & Urban analytics, urban design   \\ \hline
+More specific subject area & Machine learning  \\ \hline
+Type of data & Google Street View imagery of Melbourne, Australia  \\ \hline
+How data was acquired & Downloaded using the Google Street View API \citep{GoogleMaps2017b}  \\ \hline
+Data format & JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000  \\ \hline
+Experimental factors & Does not apply  \\ \hline
+Experimental features & Street view imagery of Melbourne to be used in machine learning training  \\ \hline
+Data source locations & 1.1 million locations within the greater Melbourne, Australia metropolitan area.  \\ \hline
+Data accessiblity & Publicly available from Zenodo at https://doi.org/XXXXXXX.    \\ \hline
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Value of the Data}
+\begin{itemize}
+\item The data presented provides a large dataset of street view imagery to provide training data for neural networks.
+\item A complete and consistent city-wide imagery dataset allows an examination of many different urban analytical questions.
+\item The dataset provides a means to reproduce the experiments in the associated study.
+\end{itemize}
+
+\section{Data}\label{sec:introduction}
 The Transport, Health, and Urban Design Hub has undertaken a number of studies (CITE TO THEM) requiring large amounts of Google Street View imagery \citep{GoogleMaps2017b}. These images were used in training neural networks to classify urban typologies and a number of other uses. The purpose of this dataset is two-fold, namely (i) providing transparency and replicability of results in the papers mentioned above and (ii) facilitating innovative academic research using Google's street view imagery. The dataset is well curated and can be used for academic, non-commercial research, in accordance with Google's terms of service.
 
 The dataset itself consists of Google Street View imagery for 1.1 million locations in the Greater Melbourne area in Australia. Four images for each location was sampled, with a field of view of 90 degrees and with headings of 0, 90, 180, and 270 degrees. Collected in March 2018.
 
-\section{How the data was collected}\label{sec:create}
+\section{Experimental design, materials, and methods}\label{sec:create}
+\subsection{Data collection}
 In order to efficiently sample data for the Greater Melbourne area, as well as avoid imagery that is not available or that was of indoor locations, the imagery locations were determined by using the road network of Melbourne. Using the AURIN portal \citep{Aurin2018}, the Greater Melbourne area (gccsa\_2016/GMEL) was selected and the PSMA Street Network \citep{PSMA2018} was imported into the project. The PSMA Street Network provides national coverage of the street network at all levels. Roads data covers everything from major highways to walking paths. Using QGIS \citep{QGIS2009}, nodes of the vector lines were extracted from the corresponding shapefile to a new layer. For illustration purposes, an excerpt of this node point layer is provided below:
 
-[replace headers with something more descriptive]
 \begin{verbatim}
-X, Y, dirn_cd, jrsdctn_id, st_lne_pid, authrty_cd, full_name
+X, Y, Street_direction_code, Jurisdiction_ID, Street_line_ID, Authority_code, Full_name
 144.627419835000012,-37.745644954,2,5639424,VIC5639424,0,GREIGS ROAD
 144.616902098999986,-37.746048628,2,5639424,VIC5639424,0,GREIGS ROAD
 145.222131428000012,-38.055551055,2,15787712,VIC15787712,0,FOX DRIVE
@@ -179,7 +205,7 @@ The four images for each location are saved in the directory structure:
 
 
 
-\section{Description of the data}\label{sec:description}
+\subsection{Description of the data}\label{sec:description}
 
 The dataset contains 4,473,991 images (JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000) of Google Street View from 1,118,534 locations. Images for each of the four headings (0, 90, 180, and 270 degrees) are saved in the four subdirectories described above. 
 
@@ -199,31 +225,16 @@ Sample images for -37.932723004,145.032732984 in the four heading directions are
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.8,trim = 50mm 0mm 50mm 0mm, clip]{images/CoverageOfImagery.png} 
-\caption{Coverage of Google Street View imagery.}    
+\caption{Coverage of Melbourne Google Street View imagery.}    
  \label{fig:coverage}  
 \end{figure} 
 
 
 
 
-\section*{References}\label{sec:ref}
-%% If you have bibdatabase file and want bibtex to generate the
-%% bibitems, please use
-%%
   \bibliographystyle{elsarticle-harv} 
   \bibliography{library}
 
-%% else use the following coding to input the bibitems directly in the
-%% TeX file.
-
-\begin{thebibliography}{00}
-
-%% \bibitem[Author(year)]{label}
-%% Text of bibliographic item
-
-\bibitem[ ()]{}
-
-\end{thebibliography}
 
 
 %% The Appendices part is started with the command \appendix;
