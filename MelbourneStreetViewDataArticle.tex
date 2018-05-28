@@ -40,13 +40,11 @@
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
 %% The amsthm package provides extended theorem environments
- \usepackage{amsthm}
- \usepackage{amsmath}
- \usepackage{color}
- \usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{amsmath}
 \usepackage{siunitx}
-
-
 \usepackage{framed} % Framing content
 \usepackage{multicol} % Multiple columns environment
 \usepackage{nomencl} % Nomenclature package
@@ -67,14 +65,9 @@
 %% for the whole article with \linenumbers.
 %% \usepackage{lineno}
 
-\journal{TBD}
-
- 
+\journal{Data in Brief}
 
 \begin{document}
-
-
-
 
 \begin{frontmatter}
 
@@ -100,30 +93,22 @@
 
 \title{Melbourne Google Street View imagery dataset} 
 
-
-
-
 %% use optional labels to link authors explicitly to addresses:
 \author[melb]{Kerry A. Nice\corref{cor1}\tnoteref{t1}}
 \ead{kerry.nice@unimelb.edu.au}
 \author[melb]{Jasper S. Wijnands\tnoteref{t1}}
-\address[melb]{Transport, Health, and Urban Design Hub, Faculty of Architecture, Building, and Planning, University of Melbourne, Victoria 3010, Australia}
+\address[melb]{Transport, Health and Urban Design, Melbourne School of Design, The University of Melbourne, Parkville VIC 3010, Australia}
 \cortext[cor1]{Principal corresponding author}
-%\cortext[cor2]{First two authors contributed equally}
 \tnotetext[t1]{First two authors contributed equally}
-
 
 \begin{abstract}
 
-The data presented in this article is related to the research article entitled "XXXXXX" (Wijnands et al. 2018). The data consists of Google Street View imagery (4,473,991 images, JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000) from 1,118,534 locations in the greater Melbourne, Australia metropolitan area. Images for each of the four headings (0, 90, 180, and 270 degrees) were collected at each location. Locations were determined using the nodes of the vector lines in the PSMA Street Network dataset \citep{PSMA2018}. The dataset is available on Zenodo at https://doi.org/XXXXXXX. 
-
-
+The data presented in this article is related to the research article entitled ``Urban design using generative adversarial networks: optimising citizen health and wellbeing" \citep{wijnands2018urban}. The data consists of Google Street View imagery (4,473,991 images, 8-bit JPEG at 256$\times$256 resolution) from four headings (0, 90, 180, and 270 degrees) at 1,118,534 locations in the greater metropolitan area of Melbourne, Australia. Locations were determined using the nodes of the vector lines in the PSMA Street Network dataset \citep{PSMA2018} and data was post-processed by removing indoor images. The dataset is available on Zenodo at https://doi.org/XXXXXXX; please cite this paper if you use the dataset.
 
 \end{abstract}
 
 \begin{keyword}
-Street view imagery, neural network training data
-
+Street view, imagery, neural network, deep learning, urban analytics
 \end{keyword}
 
 \end{frontmatter}
@@ -132,40 +117,68 @@ Street view imagery, neural network training data
 % total found 4473991
 % total locations 1118534
 
-
-
 \begin{table}[!htbp]
 \caption{\bf Specifications Table \label{tab:spectable}}     
 \begin{tabular}{ |l | l| }
  \hline    
 Subject area & Urban analytics, urban design   \\ \hline
 More specific subject area & Machine learning  \\ \hline
-Type of data & Google Street View imagery of Melbourne, Australia  \\ \hline
+Type of data & Google Street View (GSV) imagery of Melbourne, Australia  \\ \hline
 How data was acquired & Downloaded using the Google Street View API \citep{GoogleMaps2017b}  \\ \hline
-Data format & JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000  \\ \hline
+Data format & JPEG 256$\times$256 8-bit  \\ \hline
 Experimental factors & Does not apply  \\ \hline
-Experimental features & Street view imagery of Melbourne to be used in machine learning training  \\ \hline
-Data source locations & 1.1 million locations within the greater Melbourne, Australia metropolitan area.  \\ \hline
+Experimental features & Street view imagery of Melbourne for machine learning  \\ \hline
+Data source locations & 1.1 million locations within the Greater Melbourne, Australia metropolitan area.  \\ \hline
 Data accessiblity & Publicly available from Zenodo at https://doi.org/XXXXXXX.    \\ \hline
-\hline
 \end{tabular}
 \end{table}
 
 \textbf{Value of the Data}
 \begin{itemize}
-\item The data presented provides a large dataset of street view imagery to provide training data for neural networks.
-\item A complete and consistent city-wide imagery dataset allows an examination of many different urban analytical questions.
+\item Structurally selected GSV imagery with limited indoor images for a single city allows for the examination of various research questions related to urban design.
+\item This dataset of street view imagery is large enough to be used as training data for deep learning. Further, the size of 256$\times$256 pixels is suitable as input for various frequently used neural network architectures.
 \item The dataset provides a means to reproduce the experiments in the associated study.
 \end{itemize}
 
-\section{Data}\label{sec:introduction}
-The Transport, Health, and Urban Design Hub has undertaken a number of studies (CITE TO THEM) requiring large amounts of Google Street View imagery \citep{GoogleMaps2017b}. These images were used in training neural networks to classify urban typologies and a number of other uses. The purpose of this dataset is two-fold, namely (i) providing transparency and replicability of results in the papers mentioned above and (ii) facilitating innovative academic research using Google's street view imagery. The dataset is well curated and can be used for academic, non-commercial research, in accordance with Google's terms of service.
+\section{Introduction}
+\label{sec:introduction}
 
-The dataset itself consists of Google Street View imagery for 1.1 million locations in the Greater Melbourne area in Australia. Four images for each location was sampled, with a field of view of 90 degrees and with headings of 0, 90, 180, and 270 degrees. Collected in March 2018.
+The Transport, Health, and Urban Design research hub at the University of Melbourne has undertaken a number of studies \citep[e.g.,][]{nice2018paris, wijnands2018urban} requiring large amounts of GSV imagery \citep{GoogleMaps2017b}. These images were used to train neural networks that classify urban typologies and implement style transfer using generative adversarial networks. The purpose of the dataset described here is two-fold, namely (i) providing transparency and replicability of results in the papers mentioned above and (ii) facilitating innovative academic research using Google's street view imagery. The dataset is well curated and can be used for academic, non-commercial research in accordance with Google's terms of service.
 
-\section{Experimental design, materials, and methods}\label{sec:create}
-\subsection{Data collection}
-In order to efficiently sample data for the Greater Melbourne area, as well as avoid imagery that is not available or that was of indoor locations, the imagery locations were determined by using the road network of Melbourne. Using the AURIN portal \citep{Aurin2018}, the Greater Melbourne area (gccsa\_2016/GMEL) was selected and the PSMA Street Network \citep{PSMA2018} was imported into the project. The PSMA Street Network provides national coverage of the street network at all levels. Roads data covers everything from major highways to walking paths. Using QGIS \citep{QGIS2009}, nodes of the vector lines were extracted from the corresponding shapefile to a new layer. For illustration purposes, an excerpt of this node point layer is provided below:
+\section{Data}
+
+The dataset consists of GSV imagery for 1,118,534 locations in the Greater Melbourne area in Australia (see Fig.~\ref{fig:coverage}), collected in March 2018. Four images for each location were sampled, with a field of view of 90 degrees and headings of 0, 90, 180, and 270 degrees. Sample images for location 37.932723$^\circ$S, 145.032733$^\circ$E are shown in Fig.~\ref{fig:sample}.
+
+\begin{figure}[!htbp]
+	\includegraphics[scale=0.8,trim = 50mm 0mm 50mm 0mm, clip]{images/CoverageOfImagery.png} 
+	\caption{Coverage of the Melbourne GSV imagery dataset.}
+	\label{fig:coverage}  
+\end{figure} 
+
+The data archive contains a CSV file that provides an overview of all image names, the latitude and longitude coordinates of the associated locations, the location number (see Sect.~\ref{sec:create}), and the street name. All JPG files follow the naming convention LocationNumber\_Latitude\_Longitude\_Heading.jpg (e.g., VIC9984261\_-37.683250063\_145.05143251199999\_90.jpg) and images for the four headings are saved in the directory structure:
+
+\dirtree{%
+	.1 Data.
+	.2 MelbourneStreetView.
+	.3 000.
+	.3 090.
+	.3 180.
+	.3 270.
+}
+
+\begin{figure}[!htbp]
+	\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_0}.jpg} 
+	\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_90}.jpg} 
+	\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_180}.jpg} 
+	\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_270}.jpg} 
+	\caption{Sample GSV imagery at (-37.932723004, 145.032732984) for headings 0, 90, 180, and 270 degrees, respectively.}
+	\label{fig:sample}  
+\end{figure} 
+
+\section{Experimental design, materials, and methods}
+\label{sec:create}
+
+The \citet{Aurin2018} provided the geographical information of the Greater Melbourne area (gccsa\_2016/GMEL). In order to efficiently sample data from this area, as well as avoid imagery that is not available or that was of indoor locations, imagery locations were determined using the road network of Melbourne. The PSMA Street Network \citep{PSMA2018} provided the required street network information at multiple levels, ranging from major highways to walking paths. Using QGIS \citep{QGIS2009}, nodes of the vector lines were extracted from the corresponding shapefile. For illustration purposes, an excerpt of this node point layer is provided below:
 
 \begin{verbatim}
 X, Y, Street_direction_code, Jurisdiction_ID, Street_line_ID, Authority_code, Full_name
@@ -174,9 +187,7 @@ X, Y, Street_direction_code, Jurisdiction_ID, Street_line_ID, Authority_code, Fu
 145.222131428000012,-38.055551055,2,15787712,VIC15787712,0,FOX DRIVE
 \end{verbatim}
 
-Using the latitude and longitude locations in this file, Python and the Google Street View API \citep{GoogleMaps2017b} were used to download imagery for the 1.7 million locations. Four images were downloaded for each location, using headings of 0, 90, 180, and 270 degrees. Images for locations where imagery was not available was removed. This brings the total number of available locations to 1.1 million.
-
-The parameters used to download the images are illustrated by the following code excerpt, in which `KEY' is the Google Street View API Key and `number' is the st\_lne\_pid from the PSMA data file (i.e. VIC5639424):
+Python and the Google Street View API \citep{GoogleMaps2017b} were used to download imagery for all 1.7 million locations at headings of 0, 90, 180 and 270 degrees, based on the latitude and longitude locations in this file. The parameters used to download the images are illustrated by the following code excerpt, in which `KEY' is the Google Street View API key and `number' is the Street\_line\_ID (e.g., VIC5639424) from the PSMA data file:
 
 \begin{verbatim}
 BUFFER_AREA = 22
@@ -184,76 +195,25 @@ IMG_SIZE = 256
 url='https://maps.googleapis.com/maps/api/streetview?&size=' + str(IMG_SIZE) +
     'x' + str(IMG_SIZE + 2 * BUFFER_AREA) + '&location=' + str(Lat) +
     ',' + str(Lon) + '&fov=90&heading=' + str(heading) +'&pitch=0&key=' + KEY         
-filename = os.path.join(output_dir, '{}_{}_{}_{}.jpg'.format(number, lat, lon,heading))
+filename = os.path.join(output_dir, '{}_{}_{}_{}.jpg'.format(number, lat, lon, heading))
 #image is cropped to remove Google logo for research purposes
 w, h = im.size
 im.crop((0, BUFFER_AREA, w, h-BUFFER_AREA)).save(filename)
 \end{verbatim}
 
-The image dataset described here has been prepared for usage in combination with frequently used neural network architectures (e.g., Inception v2, ...., etc.). As such, the resolution of each image is 256x256 pixels (while the initial download of the image was at a 256x300 resolution). For deep learning purposes, the bottom portions of the images were cropped from 256x300 to 256x256 to remove any superfluous visual information (namely, the Google logo) that would impact neural network training. Hence, when using images from this dataset in academic publications, care should be taken to provide proper attribution to Google.
+The image dataset described here has been prepared for easy application of frequently used neural network architectures (e.g., GoogLeNet, Inception v2, VGG16, ResNet50). After downloading images at a 256$\times$300 resolution, images were cropped to 256$\times$256 to remove any superfluous visual information (namely, the Google logo) that would impact neural network training. Hence, when using images from this dataset in academic publications, care should be taken to provide proper attribution to Google. The final resolution of each image is 256$\times$256 pixels, allowing for dynamic cropping to the native 224$\times$224 input resolution of the mentioned network architectures.
 
-The four images for each location are saved in the directory structure:
+Post-processing reduced the number of locations to 1.1 million, by filtering out images for locations where imagery was not available and manually removing (most) indoor images. The use of the road network map and the subsequent elimination of remaining indoor images means the published dataset is a good starting point for research focussing on urban form of an greater metropolitan area as a whole.
 
-\dirtree{%
-.1 Data.
-.2 MelbourneStreetView.
-.3 000.
-.3 090.
-.3 180.
-.3 270.
-}
-
-
-
-\subsection{Description of the data}\label{sec:description}
-
-The dataset contains 4,473,991 images (JPEG 256x256 256x256+0+0 8-bit DirectClass 14.1KB 0.000u 0:00.000) of Google Street View from 1,118,534 locations. Images for each of the four headings (0, 90, 180, and 270 degrees) are saved in the four subdirectories described above. 
-
-Each of the files follow the naming convention LocationNumber\_Latitude\_Longitude\_Heading.jpg (i.e. VIC9984261\_-37.683250063\_145.05143251199999\_90.jpg).
-
-Sample images for -37.932723004,145.032732984 in the four heading directions are shown in Figure \ref{fig:sample}. Total coverage of this dataset is shown in Figure \ref{fig:coverage}.
-
-\begin{figure}[!htbp]
-\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_0}.jpg} 
-\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_90}.jpg} 
-\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_180}.jpg} 
-\includegraphics[scale=0.4]{images/{VIC17199075_-37.932723004_145.032732984_270}.jpg} 
-\caption{Sample Google Street View imagery for VIC17199075, -37.932723004, 145.032732984 headings 0, 90, 180, and 270 degrees.}    
- \label{fig:sample}  
-\end{figure} 
-
-
-\begin{figure}[!htbp]
-\includegraphics[scale=0.8,trim = 50mm 0mm 50mm 0mm, clip]{images/CoverageOfImagery.png} 
-\caption{Coverage of Melbourne Google Street View imagery.}    
- \label{fig:coverage}  
-\end{figure} 
-
-
-
-
-  \bibliographystyle{elsarticle-harv} 
-  \bibliography{library}
-
-
+%\section*{References}
+\bibliographystyle{elsarticle-harv} 
+\bibliography{library}
 
 %% The Appendices part is started with the command \appendix;
 %% appendix sections are then done as normal sections
 \appendix
 \setcounter{table}{0}
 \renewcommand{\thetable}{A\arabic{table}}
-
-\section{Obtaining the data}                           
-The dataset is available at http://doi.org/XXXXX. It is a XX format file and size X gb. It can be verified with the MD5sum
-
-XXXXXXXXXXXXXXXX
-
-The data is published under XXX licence. If you use this dataset, please cite this paper.
-
-The archive file contains all the images as jpg files. A csv file also links image names, lat/lon locations, location number, and street name.
-
-
-
 
 \end{document}
 
